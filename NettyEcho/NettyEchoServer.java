@@ -1,6 +1,5 @@
-package Netty;
+package NettyEcho;
 
-import NettyEcho.NettyEchoServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -9,10 +8,8 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.net.SocketAddress;
-
-public class NettyServer {
-    private static final Logger log = LogManager.getLogger(NettyServer.class);
+public class NettyEchoServer {
+    private static final Logger log = LogManager.getLogger(Netty.NettyServer.class);
 
     public static void main(String[] args) throws InterruptedException {
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
@@ -27,7 +24,7 @@ public class NettyServer {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) {
-                            ch.pipeline().addLast(new NettyServerHandle());
+                            ch.pipeline().addLast(new NettyEchoServerHandler());
                         }
                     });
             ChannelFuture future = bootstrap.bind(9999).sync();

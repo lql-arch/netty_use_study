@@ -4,6 +4,7 @@ import io.netty.channel.DefaultEventLoop;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.util.NettyRuntime;
+import io.netty.util.concurrent.EventExecutor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,16 +18,17 @@ public class TestEventLoop {
         EventLoopGroup dGroup = new DefaultEventLoop(); // 普通任务，定时任务
 
         //System.out.println(NettyRuntime.availableProcessors());
-        log.debug(nGroup.next());
-        log.debug(nGroup.next());
-        log.debug(nGroup.next());
-        log.debug(nGroup.next());
+//        log.debug(nGroup.next());
+//        log.debug(nGroup.next());
+//        log.debug(nGroup.next());
+//        log.debug(nGroup.next());
 
         //普通任务
         //submit
-//        nGroup.next().execute(()->{
-//            log.debug("ok");
-//        });
+        nGroup.next().execute(()->{
+            log.debug("ok");
+        });
+
 
         //定时任务
 //        nGroup.next().scheduleAtFixedRate(()->{
