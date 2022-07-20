@@ -1,5 +1,6 @@
 package Netty;
 
+import decoderAndEncoder.Byte2IntegerDecoder;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -19,10 +20,11 @@ public class NettyClient {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel sc) throws Exception {
+                        sc.pipeline().addLast(new Byte2IntegerDecoder());
                         sc.pipeline().addLast(new NettyClientHandle());
                     }
                 });
-        ChannelFuture future = bootstrap.connect("127.0.0.1",9999).sync();
+        ChannelFuture future = bootstrap.connect("127.0.0.1",9988).sync();
         future.channel().closeFuture().sync();
         group.shutdownGracefully();
     }

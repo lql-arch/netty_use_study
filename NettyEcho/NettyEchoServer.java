@@ -25,7 +25,7 @@ public class NettyEchoServer {
                         @Override
                         protected void initChannel(SocketChannel ch) {
                             ch.pipeline().addLast(new NettyEchoServerHandler());
-                        }
+                         }
                     });
             ChannelFuture future = bootstrap.bind(9999).sync();
             log.info("start SUCCESS.");
