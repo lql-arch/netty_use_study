@@ -5,9 +5,6 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.string.StringDecoder;
-import io.netty.handler.codec.string.StringEncoder;
-import io.netty.handler.logging.LoggingHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -43,7 +40,6 @@ public class NettyChatServer {
                         //添加编解码器
 //                        ch.pipeline().addLast(new StringDecoder());
 //                        ch.pipeline().addLast(new StringEncoder());
-                        //ch.pipeline().addLast(new LoggingHandler());
                         ch.pipeline().addLast(new Decode());
                         ch.pipeline().addLast(new Encode());
                         // todo

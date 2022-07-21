@@ -58,6 +58,7 @@ public class NettyChatClient {
             Channel channel = channelFuture.channel();
             log.info("-------" + channel.localAddress().toString().substring(1) + "--------");
             Scanner scanner = new Scanner(System.in);
+            System.out.print("[你]： ");
             while (scanner.hasNextLine()) {
                 String msg = scanner.nextLine();
                 //向服务端发送消息
@@ -65,11 +66,12 @@ public class NettyChatClient {
                 new Thread(()->{
                     System.out.print("已发送");
                     try {
-                        Thread.sleep(500);
+                        Thread.sleep(300);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
                     System.out.println("\b\b\b\b\b\b\b               ");
+                    //System.out.print("[你]：");
                 }).start();
             }
             //8. 关闭通道和关闭连接池
